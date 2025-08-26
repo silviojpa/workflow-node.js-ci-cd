@@ -12,10 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-22.04
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -54,7 +50,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-22.04
-    needs: build # Este job só executa se o job 'build' for bem-sucedido
+    needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
