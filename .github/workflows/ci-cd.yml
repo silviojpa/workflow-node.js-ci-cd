@@ -36,10 +36,14 @@ jobs:
         
       - name: Build and prepare artifact
         run: |
-          sudo apt-get install rsync
           rm -rf dist
           mkdir dist
-          rsync -av --progress --exclude='dist' . dist/
+          cp app.js dist/
+          cp app.test.js dist/
+          cp package.json dist/
+          cp package-lock.json dist/
+          cp .gitignore dist/
+          cp .eslintrc.json dist/
           echo "Build successful!"
 
       - name: Upload build artifact
