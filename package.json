@@ -7,7 +7,7 @@
     "start": "node app.js",
     "test": "jest --coverage",
     "lint": "eslint .",
-    "build": "echo 'Building project...' && mkdir dist && cp -r ./* dist/"
+    "build": "echo 'Building project...' && rm -rf dist && mkdir dist && cp -r ./* dist/"
   },
   "dependencies": {
     "express": "^4.19.2"
