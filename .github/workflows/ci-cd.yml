@@ -36,9 +36,6 @@ jobs:
         
       - name: Clean build directory
         run: npm run build
-        
-      - name: Build project
-        run: npm run build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
