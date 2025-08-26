@@ -33,7 +33,10 @@ jobs:
 
       - name: Run tests with coverage
         run: npm test
-
+        
+      - name: Clean build directory
+        run: npm run build
+        
       - name: Build project
         run: npm run build
 
