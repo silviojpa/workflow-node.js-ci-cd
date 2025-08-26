@@ -1,0 +1,20 @@
+{
+  "name": "projeto-avancado-ci-cd",
+  "version": "1.0.0",
+  "description": "Projeto com CI/CD avançado usando GitHub Actions.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest --coverage",
+    "lint": "eslint .",
+    "build": "echo 'Building project...' && mkdir dist && cp -r ./* dist/"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}
