@@ -49,7 +49,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-build-${{ github.sha }}
+          name: app-build-${{ github.sha }}-${{ matrix.node-version }}
           path: dist
 
   deploy:
