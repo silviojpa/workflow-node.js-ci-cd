@@ -34,7 +34,7 @@ jobs:
       - name: Run tests with coverage
         run: npm test
         
-      - name: Clean build directory
+      - name: Build and prepare artifact
         run: npm run build
 
       - name: Upload build artifact
