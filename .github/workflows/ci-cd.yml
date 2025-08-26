@@ -1,0 +1,63 @@
+name: Advanced CI/CD for Node.js App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Run tests with coverage
+        run: npm test
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-build-${{ github.sha }}
+          path: dist
+
+  deploy:
+    runs-on: ubuntu-22.04
+    needs: build # Este job só executa se o job 'build' for bem-sucedido
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-build-${{ github.sha }}
+          path: deploy-dist
+
+      - name: Deploy to staging server
+        run: |
+          echo "Deploying to staging server..."
+          echo "Downloaded artifact from build job to 'deploy-dist'."
+          echo "Simulating SSH/SCP to transfer files to staging."
+          echo "Deployment successful!"
